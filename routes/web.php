@@ -11,7 +11,9 @@
 |
 */
 
-// Parâmetros opcionais
+use Illuminate\Http\Request;
+
+// Parâmetros das rotas
 Route::get('/', function () {
     return view('welcome');
 });
@@ -59,4 +61,54 @@ Route::prefix('/app') -> group(function() {
     Route::get('/user', function () {
         return view('user');
     }) -> name('appUser'); // Nomeando rotas
+});
+
+Route::get('/produtos', function() {
+    echo "<h1>Produtos</h1>";
+    echo "<ol>";
+    echo "<li>Notebook</li>";
+    echo "<li>Impressora</li>";
+    echo "<li>Mouse</li>";
+    echo "<ol>";
+})  -> name('meusProdutos');
+
+// ------------------
+// Redirecionando requisições
+
+Route::redirect('todosProdutos1', 'produtos', 301);
+
+Route::get('todosProdutos2', function() {
+    return redirect() -> route('meusProdutos');
+});
+
+// ------------------
+// Métodos HTTP
+
+// É usado para enviar dados para criar um novo recurso. Por exemplo, ao preencher um formulário de cadastro e clicar em "Enviar", você está fazendo uma requisição POST com seus dados para criar um novo usuário.
+Route::post('/requisicoes', function(Request $request) {
+    return 'Hello POST';
+});
+
+// É usado para excluir um recurso específico.
+Route::delete('/requisicoes', function(Request $request) {
+    return 'Hello DELETE';
+});
+
+// É usado para atualizar um recurso existente de forma completa. Ao usar PUT, você envia o recurso inteiro, substituindo completamente a versão antiga pela nova que você enviou.
+Route::put('/requisicoes', function(Request $request) {
+    return 'Hello PUT';
+});
+
+// É usado para atualizar parcialmente um recurso existente. Diferente do PUT, o PATCH envia apenas as alterações que você deseja fazer, sem a necessidade de enviar o recurso completo.
+Route::patch('/requisicoes', function(Request $request) {
+    return 'Hello PATCH';
+});
+
+Route::options('/requisicoes', function(Request $request) {
+    return 'Hello OPTIONS';
+});
+
+// É usado para solicitar dados de um recurso. É como pedir para ver uma página ou obter informações. 
+Route::get('/requisicoes', function(Request $request) {
+    return 'Hello GET';
 });
