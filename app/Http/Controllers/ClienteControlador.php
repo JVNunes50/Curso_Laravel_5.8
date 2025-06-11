@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class ClienteControlador extends Controller
 {
+    $clientes = [
+        ['id' => 1, 'nome' => 'Joao'],
+        ['id' => 2, 'nome' => 'Pedro'],
+        ['id' => 3, 'nome' => 'Thiago'],
+        ['id' => 4, 'nome' => 'Jesus']
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -70,7 +76,6 @@ class ClienteControlador extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *

@@ -17,12 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Criando o controlador
 Route::get('produtos', 'MeuControlador@produtos');
 Route::get('nome', 'MeuControlador@getNome');
 Route::get('idade', 'MeuControlador@getIdade');
 Route::get('multiplicar/{n1}/{n2}', 'MeuControlador@getMultiplicar');
 
+// ------------------
+// Associando rotas ao controlador
 
+Route::resource('clientes', 'ClienteControlador');
 
 /*
 // Parâmetros das rotas
