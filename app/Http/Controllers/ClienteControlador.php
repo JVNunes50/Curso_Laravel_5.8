@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ClienteControlador extends Controller
 {
-    $clientes = [
+    private $clientes = [
         ['id' => 1, 'nome' => 'Joao'],
         ['id' => 2, 'nome' => 'Pedro'],
         ['id' => 3, 'nome' => 'Thiago'],
