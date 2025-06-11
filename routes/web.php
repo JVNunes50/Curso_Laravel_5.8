@@ -13,11 +13,19 @@
 
 use Illuminate\Http\Request;
 
-// Parâmetros das rotas
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('produtos', 'MeuControlador@produtos');
+Route::get('nome', 'MeuControlador@getNome');
+Route::get('idade', 'MeuControlador@getIdade');
+Route::get('multiplicar/{n1}/{n2}', 'MeuControlador@getMultiplicar');
+
+
+
+/*
+// Parâmetros das rotas
 Route::get('/teste', function () {
     return "Ola!";
 });
@@ -104,6 +112,7 @@ Route::patch('/requisicoes', function(Request $request) {
     return 'Hello PATCH';
 });
 
+// Ele é usado pelo navegador para verificar quais métodos de requisição são permitidos em uma determinada URL antes de enviar a requisição real.
 Route::options('/requisicoes', function(Request $request) {
     return 'Hello OPTIONS';
 });
@@ -112,3 +121,4 @@ Route::options('/requisicoes', function(Request $request) {
 Route::get('/requisicoes', function(Request $request) {
     return 'Hello GET';
 });
+*\
