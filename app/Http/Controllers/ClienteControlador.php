@@ -18,8 +18,21 @@ class ClienteControlador extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        // Lista de clientes usando a views
+
+        $clientes = $this->clientes;
+        return view('clientes.index', compact(['clientes']));
+
+        // Lista de clientes
+        /*
+        echo "<ol>";
+        foreach($this->clientes as $c){
+            echo "<li>" . $c['nome'] . "</li>";
+        }
+        echo "<ol>";
+        */
+
     }
 
     /**
