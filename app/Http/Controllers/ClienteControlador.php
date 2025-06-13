@@ -46,7 +46,7 @@ class ClienteControlador extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() // Formulário de Criação
     {
         return view('clientes.create');
     }
@@ -57,14 +57,14 @@ class ClienteControlador extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) // Salvar Novo Cliente
     {
-        $clientes = session('clientes');
-        $id = end($clientes)['id'] + 1;
-        $nome = $request->nome;
-        $dados = ['id'=>$id, 'nome'=>$nome];
-        $clientes[] = $dados;
-        session(['clientes'=>$clientes]);
+        $clientes = session('clientes'); // Pega a lista atual da sessão.
+        $id = end($clientes)['id'] + 1; // Pega o ID do último cliente e soma 1 para criar um novo ID.
+        $nome = $request->nome; // Pega o nome enviado pelo formulário.
+        $dados = ['id'=>$id, 'nome'=>$nome]; // Cria um array com os dados do novo cliente.
+        $clientes[] = $dados; // Adiciona o novo cliente à lista.
+        session(['clientes'=>$clientes]); // Salva a lista atualizada de volta na sessão.
         return redirect()->route('clientes.index');
         /*    
         $clientes = $this->clientes;
@@ -92,12 +92,12 @@ class ClienteControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) // Formulário de Edição
     {
-        $clientes = session('clientes');
-        $index = $this->getIndex($id, $clientes);
-        $cliente = $clientes [$index];
-        return view('clientes.edit', compact('cliente'));
+        $clientes = session('clientes');  // Pega a lista da sessão.
+        $index = $this->getIndex($id, $clientes); // Encontra a posição (índice) do cliente no array.
+        $cliente = $clientes [$index]; // Pega os dados desse cliente.
+        return view('clientes.edit', compact('cliente')); // Envia o cliente para a view de edição.
     }
 
     /**
@@ -107,12 +107,12 @@ class ClienteControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) // Atualizar Cliente
     {
         $clientes = session('clientes');
-        $index = $this->getIndex($id, $clientes);
-        $clientes [$index]['nome'] = $request->nome;
-        session(['clientes'=>$clientes]);
+        $index = $this->getIndex($id, $clientes); // Acha o cliente a ser atualizado.
+        $clientes [$index]['nome'] = $request->nome; // Atualiza o nome com o que veio do formulário.
+        session(['clientes'=>$clientes]); // Salva a lista modificada na sessão.
         return redirect()->route('clientes.index');
     }
     /**
@@ -121,18 +121,19 @@ class ClienteControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id) // Apagar Cliente
     {
         $clientes = session('clientes');
-        $index = $this->getIndex($id, $clientes);
-        array_splice($clientes, $index, 1);
-        session(['clientes'=>$clientes]);
+        $index = $this->getIndex($id, $clientes); // Acha o índice do cliente a ser apagado.
+        array_splice($clientes, $index, 1); // Remove o cliente do array.
+        session(['clientes'=>$clientes]); // Salva a lista (agora sem o cliente) na sessão.
         return redirect()->route('clientes.index');
     }
 
-    private function getIndex($id, $clientes){
-        $ids = array_column($clientes, 'id');
-        $index = array_search($id, $ids);
+    private function getIndex($id, $clientes) // Função Auxiliar
+    {
+        $ids = array_column($clientes, 'id'); // Cria um array contendo apenas os IDs de todos os clientes.
+        $index = array_search($id, $ids); // Procura o '$id' recebido nesse array de IDs e retorna sua posição.
         return $index;
     }
 }
