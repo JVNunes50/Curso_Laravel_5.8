@@ -120,6 +120,11 @@ class ClienteControlador extends Controller
      */
     public function destroy($id)
     {
-        //
+        $clientes = session('clientes');
+        $ids = array_column($clientes, 'id');
+        $index = array_search($id, $ids);
+        array_splice($clientes, $index, 1);
+        session(['clientes'=>$clientes]);
+        return redirect()->route('clientes.index');
     }
 }
