@@ -28,7 +28,13 @@ class ClienteControlador extends Controller
         // Lista de clientes usando a views
 
         $clientes = session('clientes');
-        return view('clientes.index', compact(['clientes']));
+        $titulo = "Todos os clientes";
+        return view('clientes.index')
+            -> with('clientes', $clientes)
+            -> with('titulo', $titulo);
+        
+        //return view('clientes.index', ['clientes'=>$clientes, 'titulo'=>$titulo]);
+        //return view('clientes.index', compact(['clientes']));
 
         // Lista de clientes
         /*
