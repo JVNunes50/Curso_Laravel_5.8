@@ -12,16 +12,16 @@
         <div class="col1">
             <div class="menu">
                 <ul>
-                    <li><a class="{{request()->routeIs('clientes.index') ? 'active' : ''}}" 
-                        href="{{ route('clientes.index') }}"></a>Clientes</li>
-                    <li><a class="{{request()->routeIs('produtos') ? 'active' : ''}}" 
-                        href="{{ route('produtos') }}"></a>Produtos</li>
-                    <li><a class="{{request()->routeIs('departamentos') ? 'active' : ''}}"
-                        href="{{ route('departamentos') }}"></a>Departamento</li>
+                    <li><a class="{{ request()->routeIs('clientes.index') ? 'active' : '' }}" 
+                        href="{{ route('clientes.index') }}">Clientes</a></li>
+                    <li><a class="{{ request()->routeIs('produtos') ? 'active' : '' }}" 
+                        href="{{ route('produtos') }}">Produtos</a></li>
+                    <li><a class="{{ request()->routeIs('departamentos') ? 'active' : '' }}"
+                        href="{{ route('departamentos') }}">Departamento</a></li>
                 </ul>
             </div>
         </div>
-        <div class="cal2">
+        <div class="col2">
             @yield('conteudo')
         </div>
     </div>
