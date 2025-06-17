@@ -30,6 +30,10 @@ Route::get('nome', 'MeuControlador@getNome');
 Route::get('idade', 'MeuControlador@getIdade');
 Route::get('multiplicar/{n1}/{n2}', 'MeuControlador@getMultiplicar');
 
+Route::get('opcoes/{opcao?}', function($opcao = null){
+    return view('outras.opcoes', compact(['opcao']));
+}) -> name('opcoes');
+
 // ------------------
 // Associando rotas ao controlador
 
