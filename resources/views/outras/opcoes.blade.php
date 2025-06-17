@@ -6,10 +6,10 @@
 
 <div class="options">
     <ul>
-        <li><a class="warning" href="{{ Route('opcoes', 1) }}">Warning</a></li>
-        <li><a class="info" href="{{ Route('opcoes', 2) }}">Info</a></li>
-        <li><a class="success" href="{{ Route('opcoes', 3) }}">Success</a></li>
-        <li><a class="error" href="{{ Route('opcoes', 4) }}">Error</a></li>
+        <li><a class="warning {{ request('opcao') == 1 ? 'selected' : '' }}" href="{{ Route('opcoes', 1) }}">Warning</a></li>
+        <li><a class="info {{ request('opcao') == 2 ? 'selected' : '' }}" href="{{ Route('opcoes', 2) }}">Info</a></li>
+        <li><a class="success {{ request('opcao') == 3 ? 'selected' : '' }}" href="{{ Route('opcoes', 3) }}">Success</a></li>
+        <li><a class="error {{ request('opcao') == 4 ? 'selected' : '' }}" href="{{ Route('opcoes', 4) }}">Error</a></li>
     </ul>
 </div>
 
