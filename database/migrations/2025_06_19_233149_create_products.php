@@ -18,7 +18,7 @@ class CreateProducts extends Migration
             $table->string('name');
             $table->integer('stock');
             $table->double('price');
-            $table->string('description');
+            $table->string('description')->nullable(); // O nullable informa que o campo pode ser nulo
             $table->timestamps();
         });
     }
